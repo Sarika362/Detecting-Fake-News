@@ -24,10 +24,10 @@ https://365datascience.com/resources/downloadables/Python-Projects-Detecting-Fak
 4 models are built using PassiveAggressiveClassifier
 
 ### 1. Model
-Accuracy : %
+Accuracy : 93.21% 
 ### 2. Model
-Accuracy : %
+Accuracy : 92.58%
 ### 3. Model
-Accuracy : %
+Accuracy : 93.68%
 ### 4. Model
-Accuracy : %
+Accuracy : 94.55%
