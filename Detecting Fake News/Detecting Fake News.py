@@ -21,7 +21,7 @@
 # ### 3- Build a model using PassiveAggressiveClassifier
 # ### 4- Evaluate the model's accuracy
 
-# In[ ]:
+# In[1]:
 
 
 pip install numpy pandas sklearn
@@ -29,7 +29,7 @@ pip install numpy pandas sklearn
 
 # #### 1- Import necessary libraries
 
-# In[ ]:
+# In[2]:
 
 
 import pandas as pd
@@ -45,32 +45,32 @@ import matplotlib.pyplot as plt
 
 # #### 2- Read and explore the dataset
 
-# In[ ]:
+# In[3]:
 
 
 news_data= pd.read_csv("dataset/news.csv")
 news_data.head(10)
 
 
-# In[ ]:
+# In[4]:
 
 
 news_data.info()
 
 
-# In[ ]:
+# In[5]:
 
 
 news_data.shape
 
 
-# In[ ]:
+# In[6]:
 
 
 news_data["label"].value_counts()
 
 
-# In[ ]:
+# In[7]:
 
 
 labels= news_data.label
@@ -81,14 +81,14 @@ labels.head(10)
 
 # #### 3- Build the model
 
-# In[ ]:
+# In[8]:
 
 
 #First, we split the dataset into train & test samples:
-x_train, x_test, y_train, y_test= train_test_split(news_data["text"], labels, test_size= 0.2, random_state= 7)
+x_train, x_test, y_train, y_test= train_test_split(news_data["text"], labels, test_size= 0.4, random_state= 7)
 
 
-# In[ ]:
+# In[9]:
 
 
 #Then we’ll initialize TfidfVectorizer with English stop words
@@ -97,7 +97,7 @@ tfidf_train=vectorizer.fit_transform(x_train)
 tfidf_test=vectorizer.transform(x_test)
 
 
-# In[ ]:
+# In[10]:
 
 
 #Create a PassiveAggressiveClassifier
@@ -109,7 +109,7 @@ y_pred=passive.predict(tfidf_test)
 
 # #### 4- Evaluate the model's accuracy
 
-# In[ ]:
+# In[11]:
 
 
 #Create a confusion matrix
@@ -117,7 +117,7 @@ matrix= confusion_matrix(y_test,y_pred, labels=['FAKE','REAL'])
 matrix
 
 
-# In[ ]:
+# In[12]:
 
 
 #Visualize the confusion matrix
@@ -125,7 +125,7 @@ sns.heatmap(matrix, annot=True)
 plt.show()
 
 
-# In[ ]:
+# In[13]:
 
 
 #Calculate the model's accuracy
@@ -133,15 +133,15 @@ Accuracy=accuracy_score(y_test,y_pred)
 Accuracy*100
 
 
-# In[ ]:
+# In[14]:
 
 
-## The model's accuracy is 93%
+## The model's accuracy is 93.21%
 Report= classification_report(y_test, y_pred)
 print(Report)
 
 
-# In[ ]:
+# In[15]:
 
 
 #Now let’s test this model. 
@@ -154,7 +154,7 @@ data = vectorizer.transform([news_headline_1]).toarray()
 print(passive.predict(data))
 
 
-# In[ ]:
+# In[16]:
 
 
 #Now I’m going to write a random fake news headline to see if the model predicts the news is fake or not:
@@ -164,7 +164,7 @@ data = vectorizer.transform([news_headline_2]).toarray()
 print(passive.predict(data))
 
 
-# In[ ]:
+# In[17]:
 
 
 news_headline_3 = "Doubt Congress will get ‘even 40 seats’ in LS polls, says Mamata"
@@ -176,23 +176,23 @@ print(passive.predict(data))
 
 # #### 3- Build the model
 
-# In[ ]:
+# In[18]:
 
 
 #First, we split the dataset into train & test samples:
-x_train,x_test,y_train,y_test=train_test_split(news_data['text'], labels, test_size=0.4, random_state=7)
+x_train,x_test,y_train,y_test=train_test_split(news_data['text'], labels, test_size=0.2, random_state=7)
 
 
-# In[ ]:
+# In[19]:
 
 
-vectorizer=TfidfVectorizer(stop_words='english', max_df=0.7)
+vectorizer=TfidfVectorizer(stop_words='english', max_df=0.9)
 ## fit and transform train set, transform test set
 tfidf_train=vectorizer.fit_transform(x_train)
 tfidf_test=vectorizer.transform(x_test)
 
 
-# In[ ]:
+# In[20]:
 
 
 #Create a PassiveAggressiveClassifier
@@ -204,7 +204,7 @@ y_pred=passive.predict(tfidf_test)
 
 # #### 4- Evaluate the model's accuracy
 
-# In[ ]:
+# In[21]:
 
 
 #Create a confusion matrix
@@ -212,7 +212,7 @@ matrix= confusion_matrix(y_test,y_pred, labels=['FAKE','REAL'])
 matrix
 
 
-# In[ ]:
+# In[22]:
 
 
 #Visualize the confusion matrix
@@ -220,7 +220,7 @@ sns.heatmap(matrix, annot=True)
 plt.show()
 
 
-# In[ ]:
+# In[23]:
 
 
 #Calculate the model's accuracy
@@ -228,15 +228,15 @@ Accuracy=accuracy_score(y_test,y_pred)
 Accuracy*100
 
 
-# In[ ]:
+# In[24]:
 
 
-## The model's accuracy is 93%
+## The model's accuracy is 92.58%
 Report= classification_report(y_test, y_pred)
 print(Report)
 
 
-# In[ ]:
+# In[25]:
 
 
 #Now let’s test this model. 
@@ -249,7 +249,7 @@ data = vectorizer.transform([news_headline_1]).toarray()
 print(passive.predict(data))
 
 
-# In[ ]:
+# In[26]:
 
 
 #Now I’m going to write a random fake news headline to see if the model predicts the news is fake or not:
@@ -259,7 +259,7 @@ data = vectorizer.transform([news_headline_2]).toarray()
 print(passive.predict(data))
 
 
-# In[ ]:
+# In[27]:
 
 
 news_headline_3 = "Doubt Congress will get ‘even 40 seats’ in LS polls, says Mamata"
@@ -271,14 +271,14 @@ print(passive.predict(data))
 
 # #### 3- Build the model
 
-# In[ ]:
+# In[28]:
 
 
 #First, we split the dataset into train & test samples:
 x_train,x_test,y_train,y_test=train_test_split(news_data['text'], labels, test_size=0.3, random_state=6)
 
 
-# In[ ]:
+# In[29]:
 
 
 vectorizer=TfidfVectorizer(stop_words='english', max_df=0.9)
@@ -287,7 +287,7 @@ tfidf_train=vectorizer.fit_transform(x_train)
 tfidf_test=vectorizer.transform(x_test)
 
 
-# In[ ]:
+# In[30]:
 
 
 #Create a PassiveAggressiveClassifier
@@ -299,7 +299,7 @@ y_pred=passive.predict(tfidf_test)
 
 # #### 4- Evaluate the model's accuracy
 
-# In[ ]:
+# In[31]:
 
 
 #Create a confusion matrix
@@ -307,7 +307,7 @@ matrix= confusion_matrix(y_test,y_pred, labels=['FAKE','REAL'])
 matrix
 
 
-# In[ ]:
+# In[32]:
 
 
 #Visualize the confusion matrix
@@ -315,7 +315,7 @@ sns.heatmap(matrix, annot=True)
 plt.show()
 
 
-# In[ ]:
+# In[33]:
 
 
 #Calculate the model's accuracy
@@ -323,15 +323,15 @@ Accuracy=accuracy_score(y_test,y_pred)
 Accuracy*100
 
 
-# In[ ]:
+# In[34]:
 
 
-## The model's accuracy is 93.52%
+## The model's accuracy is 93.68%
 Report= classification_report(y_test, y_pred)
 print(Report)
 
 
-# In[ ]:
+# In[35]:
 
 
 #Now let’s test this model. 
@@ -344,7 +344,7 @@ data = vectorizer.transform([news_headline_1]).toarray()
 print(passive.predict(data))
 
 
-# In[ ]:
+# In[36]:
 
 
 #Now I’m going to write a random fake news headline to see if the model predicts the news is fake or not:
@@ -354,7 +354,7 @@ data = vectorizer.transform([news_headline_2]).toarray()
 print(passive.predict(data))
 
 
-# In[ ]:
+# In[37]:
 
 
 news_headline_3 = "Doubt Congress will get ‘even 40 seats’ in LS polls, says Mamata"
@@ -362,18 +362,18 @@ data = vectorizer.transform([news_headline_3]).toarray()
 print(passive.predict(data))
 
 
-# ### 4th Model to Increase Accuracy
+# ### 4nd Model to Increase Accuracy
 
 # #### 3- Build the model
 
-# In[ ]:
+# In[38]:
 
 
 #First, we split the dataset into train & test samples:
 x_train,x_test,y_train,y_test=train_test_split(news_data['text'], labels, test_size=0.2, random_state=10)
 
 
-# In[ ]:
+# In[39]:
 
 
 vectorizer=TfidfVectorizer(stop_words='english', max_df=0.9)
@@ -382,7 +382,7 @@ tfidf_train=vectorizer.fit_transform(x_train)
 tfidf_test=vectorizer.transform(x_test)
 
 
-# In[ ]:
+# In[40]:
 
 
 #Create a PassiveAggressiveClassifier
@@ -394,7 +394,7 @@ y_pred=passive.predict(tfidf_test)
 
 # #### 4- Evaluate the model's accuracy
 
-# In[ ]:
+# In[41]:
 
 
 #Create a confusion matrix
@@ -402,7 +402,7 @@ matrix= confusion_matrix(y_test,y_pred, labels=['FAKE','REAL'])
 matrix
 
 
-# In[ ]:
+# In[42]:
 
 
 #Visualize the confusion matrix
@@ -410,7 +410,7 @@ sns.heatmap(matrix, annot=True)
 plt.show()
 
 
-# In[ ]:
+# In[43]:
 
 
 #Calculate the model's accuracy
@@ -418,15 +418,15 @@ Accuracy=accuracy_score(y_test,y_pred)
 Accuracy*100
 
 
-# In[ ]:
+# In[44]:
 
 
-## The model's accuracy is 94.86%
+## The model's accuracy is 94.55%
 Report= classification_report(y_test, y_pred)
 print(Report)
 
 
-# In[ ]:
+# In[45]:
 
 
 #Now let’s test this model. 
@@ -439,7 +439,7 @@ data = vectorizer.transform([news_headline_1]).toarray()
 print(passive.predict(data))
 
 
-# In[ ]:
+# In[46]:
 
 
 #Now I’m going to write a random fake news headline to see if the model predicts the news is fake or not:
@@ -449,7 +449,7 @@ data = vectorizer.transform([news_headline_2]).toarray()
 print(passive.predict(data))
 
 
-# In[ ]:
+# In[47]:
 
 
 news_headline_3 = "Doubt Congress will get ‘even 40 seats’ in LS polls, says Mamata"
